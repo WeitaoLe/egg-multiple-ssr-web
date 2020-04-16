@@ -6,7 +6,7 @@
     "debug": "egg-bin debug",
     "clean": "easy clean",
     "build": "easy build prod",
-    "start": "egg-scripts start",
+    "start": "egg-scripts start --port=7001 --daemon --title=egg-server-showcase",
     "dev": "egg-bin dev",
     "lint": "eslint .",
     "fix": "eslint --fix .",
