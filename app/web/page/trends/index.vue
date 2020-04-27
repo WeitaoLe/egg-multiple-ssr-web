@@ -1,8 +1,7 @@
 <template>
-  <Layout :title="title" >
+  <Layout :title="title">
     <div class="container smart-container">
       <div class="row row-offcanvas row-offcanvas-right">
-        <div><i class="iconfont icon-icon-time"></i> <span class="iconfont">&#xe621;</span></div>
         <div class="col-xs-12 col-sm-9">
           <ul class="smart-artiles" id="articleList">
             <li v-for="item in lists" :key="item.id">
@@ -19,7 +18,7 @@
                     <li class="tauthor">
                       <a href="#" target="_blank" class="get" v-html="item.author"></a>
                     </li>
-                    <li><a>+收藏<i class="iconfont icon-icon-time"></i> <span class="iconfont">&#xe621;</span></a></li>
+                    <li><a>+收藏</a></li>
                     <li>
                       <span class="timeago">{{ item.summary }}</span>
                     </li>
@@ -31,7 +30,7 @@
               </div>
             </li>
           </ul>
-          <div id="pagerBottom" class="smart-pager">
+          <div id="pagerBottom" class="smart-pager" v-if="isLoading">
             <img src="../../asset/images/loading.gif" />
           </div>
           <div class="page">
@@ -52,7 +51,6 @@
   </Layout>
 </template>
 <style lang="scss">
- @import '../../sass/home';
 </style>
 <script type="text/babel">
 import { formatDate } from 'framework/utils/utils.js'
@@ -60,7 +58,7 @@ export default {
   components: {},
   data () {
     return {
-      title: '',
+      title:'易观动态',
       isFinish: false,
       isLoading: false,
       pageIndex: 1,

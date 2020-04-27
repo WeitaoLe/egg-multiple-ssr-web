@@ -1,0 +1,11 @@
+.ft-flex{
+  display: flex;
+  justify-content: space-between;
+  .ft-item{
+    float: left;
+    margin-left: 20px;
+    dd{
+      margin-bottom: 15px;
+    }
+  }
+}

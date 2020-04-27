@@ -18,10 +18,10 @@ module.exports = app => {
       basedir: path.join(app.baseDir, 'app/view')
     },
     injectRes: [{
-        url: 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css'
+        url: 'https://s1.analysys.cn/libs/??twitter-bootstrap/3.3.7/css/bootstrap.min.css,pace/1.0.2/themes/blue/pace-theme-minimal.css,animate.css/3.7.2/animate.min.css'
       },
       {
-        url: 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js'
+        url: '//s1.analysys.cn/libs/??es6-shim/0.34.2/es6-shim.min.js,-/@fedor/promise@1.0.1/dist/promise.polyfill.min.js,moment.js/2.18.1/moment.min.js'
       }
     ]
   };
