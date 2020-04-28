@@ -31,18 +31,18 @@
             </li>
           </ul>
           <div id="pagerBottom" class="smart-pager" v-if="isLoading">
-            <img src="../../asset/images/loading.gif" />
+            <img src="../../../asset/images/loading.gif" />
           </div>
           <div class="page">
             <ul>
               <!-- <li v-for="(item,idx)in total" :key="item"><a href="?page=1">{{idx}}</a></li> -->
-              <li><a href="?page=1"></a></li>
-              <li><a href="?page=2"></a></li>
-              <li><a href="?page=3">3</a></li>
-              <li><a href="?page=4">4</a></li>
-              <li><a href="?page=5">5</a></li>
-              <li><a href="?page=6">6</a></li>
-              <li><a href="?page=7">7</a></li>
+              <li><a href="./1">1</a></li>
+              <li><a href="./2">2</a></li>
+              <li><a href="./3">3</a></li>
+              <li><a href="./4">4</a></li>
+              <li><a href="./5">5</a></li>
+              <li><a href="./6">6</a></li>
+              <li><a href="./7">7</a></li>
             </ul>
           </div>
         </div>
@@ -51,6 +51,24 @@
   </Layout>
 </template>
 <style lang="scss">
+.page{
+  li{
+    float: left;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 10px;
+    border: 1px solid #333;
+    a {
+      font-size: 16px;
+      color: blue;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
 </style>
 <script type="text/babel">
 import { formatDate } from 'framework/utils/utils.js'

@@ -61,7 +61,7 @@ export default {
   components: {},
   data () {
     return {
-      title: '易观博阅',
+      title: '服务协议',
       isFinish: false,
       isLoading: false,
       pageIndex: 1,

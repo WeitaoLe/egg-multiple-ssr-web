@@ -1,57 +1,32 @@
 'use strict';
-const io = require('axios');
-const config = require('../../moudules/articleconfig')
+const io = require('../../moudules/io');
+const config = require('../../moudules/apiconfig')
 
-// let list = []
 
-// async function getArticle(pageIndex, pageSize) {
-//   console.log("接口接到请求的page============",pageIndex)
-//   let params = {
-//     pageNum: pageIndex || 1,
-//     pageCount: pageSize || 5,
-//     rscolumns: config.LIST_COLUMNS
-//   }
-//   console.log("接口传递的参数===========",params)
-//   const data = await io.get(`https://www.analysys.cn/api/newsArticleList/`, {
-//     params: params
-//   })
-//   console.log("接口返回数据============",data.data.datas.records)
-
-//   list = data.data.datas.records
-// }
-
-// exports.getPage = (pageIndex, pageSize) => {
-//   getArticle(pageIndex, pageSize)
-
-//   return {
-//     list:list,
-//     total:list.length
-//   }
-// };
-
-async function getArticle(pageIndex, pageSize) {
+async function getArticle(pageIndex, pageSize,columnId) {
   let list = []
-  console.log("接口接到请求的page============",pageIndex)
   let params = {
     pageNum: pageIndex || 1,
-    pageCount: pageSize || 5,
-    rscolumns: 'id,maintitle,articeimage,author,source,publishdate,summary,starttime,endtime,columnId,field'
+    pageCount: pageSize || config.PAGE_SIZE,
+    rscolumns: config.LIST_COLUMNS,
+    column:columnId
   }
-  const data = await io.get(`https://www.analysys.cn/api/newsArticleList/`, {
+  console.log('params==============',params)
+  const data = await io.get(`${config.API_DIR}/api/newsArticleList/`, {
     params: params
   })
-  console.log("接口返回数据============",data.data.datas.records)
 
   list = data.data.datas.records
-
   return {
     list:list,
     total:list.length
   }
 }
 
-exports.getPage = async (pageIndex, pageSize)  =>  {
-  return await getArticle(pageIndex, pageSize)
+
+
+exports.getPage = async (pageIndex, pageSize, columnId)  =>  {
+  return await getArticle(pageIndex, pageSize, columnId)
 };
 
 exports.getDetail = id => {

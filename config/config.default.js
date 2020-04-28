@@ -22,7 +22,10 @@ module.exports = app => {
       },
       {
         url: '//s1.analysys.cn/libs/??es6-shim/0.34.2/es6-shim.min.js,-/@fedor/promise@1.0.1/dist/promise.polyfill.min.js,moment.js/2.18.1/moment.min.js'
-      }
+      },
+      // {
+      //   url: '/public/js/hm.js'
+      // }
     ]
   };
 

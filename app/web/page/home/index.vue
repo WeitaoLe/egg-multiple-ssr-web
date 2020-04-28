@@ -1,58 +1,57 @@
 <template>
-  <Layout :title="title" >
-    <div class="container smart-container">
-      <div class="row row-offcanvas row-offcanvas-right">
-        <div><i class="iconfont icon-icon-time"></i> <span class="iconfont">&#xe621;</span></div>
-        <div class="col-xs-12 col-sm-9">
-          <ul class="smart-artiles" id="articleList">
-            <li v-for="item in lists" :key="item.id">
-              <div class="point">+{{ item.hits }}</div>
-              <div class="card">
-                <h2>
-                  <a :href="item.url" target="_blank">{{ item.maintitle }}</a>
-                </h2>
-                <div>
-                  <ul class="actions">
-                    <li>
-                      <time class="timeago">{{ item.moduleName }}</time>
-                    </li>
-                    <li class="tauthor">
-                      <a href="#" target="_blank" class="get" v-html="item.author"></a>
-                    </li>
-                    <li><a>+收藏<i class="iconfont icon-icon-time"></i> <span class="iconfont">&#xe621;</span></a></li>
-                    <li>
-                      <span class="timeago">{{ item.summary }}</span>
-                    </li>
-                    <li>
-                      <span class="timeago"></span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <div id="pagerBottom" class="smart-pager">
-            <img src="../../asset/images/loading.gif" />
-          </div>
-          <div class="page">
-            <ul>
-              <!-- <li v-for="(item,idx)in total" :key="item"><a href="?page=1">{{idx}}</a></li> -->
-              <li><a href="?page=1"></a></li>
-              <li><a href="?page=2"></a></li>
-              <li><a href="?page=3">3</a></li>
-              <li><a href="?page=4">4</a></li>
-              <li><a href="?page=5">5</a></li>
-              <li><a href="?page=6">6</a></li>
-              <li><a href="?page=7">7</a></li>
-            </ul>
-          </div>
+  <Layout :title="title">
+    <div class="home-container clearfix">
+      <div class="banner-wraper">
+      <div class="banner container">
+        <h2>致力于数据能力平民化</h2>
+        <div class="banner-content">
+          以海量数字用户资产及算法模型为核心的大数据产品、平台及解决方案，帮助企业管理数字资产及精细化运营
         </div>
+      </div>
+      </div>
+
+      <div class="product-warp">
+        <h2>产品</h2>
+        <p>数据智能产品和平台提供商，丰富的产品和服务矩阵满足不同阶段的数字化建设需求</p>
       </div>
     </div>
   </Layout>
 </template>
 <style lang="scss">
- @import '../../sass/home';
+ .home-container{
+   height: auto;
+   padding: 0px 0 100px;
+
+  .banner-wraper{
+    background-image: linear-gradient(90deg,#34b6f6,#6f5af8);
+    color: #fff;
+    height: 300px;
+    .banner{
+      text-align: left;
+      padding: 50px 0;
+      h2{
+        font-size: 30px;
+      }
+      .banner-content{
+        line-height: 26px;
+        width: 400px;
+        padding-top: 40px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .product-warp{
+    text-align: center;
+    height: 300px;
+    padding-top: 40px;
+    h2{
+      font-size: 26px;
+      padding-bottom: 15px;
+    }
+  }
+
+ }
 </style>
 <script type="text/babel">
 import { formatDate } from 'framework/utils/utils.js'
@@ -60,7 +59,7 @@ export default {
   components: {},
   data () {
     return {
-      title: '',
+      title: '易观-数据驱动精益成长',
       isFinish: false,
       isLoading: false,
       pageIndex: 1,
@@ -100,7 +99,7 @@ export default {
     },
   },
   mounted () {
-    console.log("total============",this.total)
+
   },
 }
 </script>

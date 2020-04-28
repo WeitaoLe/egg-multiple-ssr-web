@@ -9,7 +9,9 @@
     <LayoutFooter></LayoutFooter>
   </div>
 </template>
-
+<style lang="scss">
+ @import '../../../sass/index';
+</style>
 <script type="text/babel">
   import LayoutHeader from './header/header';
   import LayoutFooter from './footer/footer';

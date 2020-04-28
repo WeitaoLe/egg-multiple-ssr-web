@@ -34,11 +34,11 @@ module.exports = app => {
       await ctx.render('about/privacy.js');
     }
 
-    async tmservice() {
+    async serviceterms() {
       const {
         ctx
       } = this;
-      await ctx.render('about/tmservice.js');
+      await ctx.render('about/serviceterms.js');
     }
 
     async culture() {

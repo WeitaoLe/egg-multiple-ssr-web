@@ -15,7 +15,14 @@ module.exports = app => {
   exports.logview = {
     dir: path.join(app.baseDir, 'logs')
   };
-
+  const sdk = {
+    url: '//ark.analysys.cn/sdk/v2_test/AnalysysAgent_JS_SDK.min.js',
+    appkey: '31abd9593e9983ec',
+    uploadURL: 'https://arkpaastest.analysys.cn:4089/',
+    eaappkey: 'VCcG6ie0mmsI',
+    eaconfigURL: 'https://eatest.analysys.cn:28088'
+  };
+  exports.sdk= sdk;
   const localIP = ip.address();
   const domainWhiteList = [];
   [7001, 9000, 9001].forEach(port => {
@@ -25,6 +32,6 @@ module.exports = app => {
   });
 
   exports.security = { domainWhiteList };
-
+  
   return exports;
 };

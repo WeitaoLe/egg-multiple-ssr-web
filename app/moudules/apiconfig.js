@@ -49,6 +49,9 @@
 //   15011: `/trend/${TREND_CATEGORY.ACTIVITY}/detail/`
 // }
 
+// API地址
+exports.API_DIR = 'https://www.analysys.cn'
+
 // `数据新知`和`易观动态`文章列表的初始数据条数
 exports.INIT_ARTICLE_COUNT = 100
 

@@ -4,22 +4,34 @@ module.exports = app => {
 
   return class ArticleController extends app.Controller {
 
-    async analysys() {
+    async analysis() {
       const {
         ctx
       } = this;
       let pageIndex = ctx.request.query.page;
       let pageSize = ctx.request.query.pageSize;
-      await ctx.render('home/index.js', await Model.getPage(pageIndex, pageSize));
+      let columnId = '8,22';
+      await ctx.render('article/analysisreport/index.js', await Model.getPage(pageIndex, pageSize, columnId));
     }
 
-    async trends() {
+    async analysysDynamic() {
       const {
         ctx
       } = this;
       let pageIndex = ctx.request.query.page;
       let pageSize = ctx.request.query.pageSize;
-      await ctx.render('home/index.js', await Model.getPage(pageIndex, pageSize));
+      let columnId = 1051;
+      await ctx.render('article/analysysdynamic/index.js', await Model.getPage(pageIndex, pageSize, columnId));
+    }
+
+    async productDynamic() {
+      const {
+        ctx
+      } = this;
+      let pageIndex = ctx.request.query.page;
+      let pageSize = ctx.request.query.pageSize;
+      let columnId = 10184;
+      await ctx.render('article/productdynamic/index.js', await Model.getPage(pageIndex, pageSize, columnId));
     }
 
     // 接口请求

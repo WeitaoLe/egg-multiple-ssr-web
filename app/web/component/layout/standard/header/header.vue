@@ -1,8 +1,9 @@
 <template>
   <header class="header">
     <div class="container">
-      <h1>
-        <a href="/" class="router-link-active">易观博阅</a></h1>
+      <h1 class="logo">
+        <a href="/" class="router-link-active">易观</a>
+      </h1>
       <ul class="nav">
         <li class="nav-item"><a href="/" :class="{'active' : selectedMenu === '/'}">首页</a></li>
         <li class="nav-item"><a href="/client" :class="{'active' : selectedMenu === '/client'}">产品</a></li>
@@ -12,7 +13,27 @@
     </div>
   </header>
 </template>
-<style>
+<style lang="scss">
+.header{
+  padding: 20px 0;
+  background-image: linear-gradient(90deg,#34b6f6,#6f5af8);
+  color: #fff;
+  .logo{
+    float: left;
+    width: 120px;
+    font-size: 16px;
+  }
+  .nav{
+    width: calc(100%-120px);
+    float: right;
+    li{
+      float: left;
+      a{
+        color: #fff;
+      }
+    }
+  }
+}
 
 </style>
 <script type="text/babel">

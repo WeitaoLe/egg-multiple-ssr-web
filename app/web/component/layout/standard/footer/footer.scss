@@ -1,5 +1,5 @@
 .ft-flex{
-  display: flex;
+  height: auto;
   justify-content: space-between;
   .ft-item{
     float: left;
@@ -8,4 +8,8 @@
       margin-bottom: 15px;
     }
   }
+}
+.ft-cprate{
+  padding: 80px 0;
+  text-align: center;
 }
