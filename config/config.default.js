@@ -29,6 +29,7 @@ module.exports = app => {
     ]
   };
 
+
   exports.logger = {
     consoleLevel: 'DEBUG',
     dir: path.join(app.baseDir, 'logs')
@@ -42,7 +43,8 @@ module.exports = app => {
   exports.keys = '123456';
 
   exports.middleware = [
-    'access'
+    'access',
+    'notfoundHandler'
   ];
 
   return exports;

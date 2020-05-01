@@ -1,14 +1,14 @@
 <template>
-  <Layout :title="title" description="分析报告" keywords="分析报告">
+  <Layout :title="title">
     <div class="container smart-container">
       <div class="row row-offcanvas row-offcanvas-right">
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-md-9">
           <ul class="smart-artiles" id="articleList">
             <li v-for="item in lists" :key="item.id">
               <div class="point">+{{ item.hits }}</div>
               <div class="card">
                 <h2>
-                  <a :href="item.url" target="_blank">{{ item.maintitle }}</a>
+                  <a :href="articleHref(item)" target="_blank">{{ item.maintitle }}</a>
                 </h2>
                 <div>
                   <ul class="actions">
@@ -18,7 +18,9 @@
                     <li class="tauthor">
                       <a href="#" target="_blank" class="get" v-html="item.author"></a>
                     </li>
-                    <li><a>+收藏</a></li>
+                    <li>
+                      <a>+收藏</a>
+                    </li>
                     <li>
                       <span class="timeago">{{ item.summary }}</span>
                     </li>
@@ -33,26 +35,18 @@
           <div id="pagerBottom" class="smart-pager" v-if="isLoading">
             <img src="../../../asset/images/loading.gif" />
           </div>
-          <div class="page">
-            <ul>
-              <!-- <li v-for="(item,idx)in total" :key="item"><a href="?page=1">{{idx}}</a></li> -->
-              <li><a href="./1">1</a></li>
-              <li><a href="./2">2</a></li>
-              <li><a href="./3">3</a></li>
-              <li><a href="./4">4</a></li>
-              <li><a href="./5">5</a></li>
-              <li><a href="./6">6</a></li>
-              <li><a href="./7">7</a></li>
-            </ul>
-          </div>
+          <pagination :data="pageTotal"></pagination>
+        </div>
+        <div class="col-md-3">
+          <hotNews :datas="lists"></hotNews>
         </div>
       </div>
     </div>
   </Layout>
 </template>
 <style lang="scss">
-.page{
-  li{
+.page {
+  li {
     float: left;
     width: 30px;
     height: 30px;
@@ -71,52 +65,49 @@
 }
 </style>
 <script type="text/babel">
-import { formatDate } from 'framework/utils/utils.js'
+import { formatDate } from "framework/utils/utils.js";
+import pagination from "component/base/page";
+import hotNews from "component/layout/standard/hotNews/hotNews";
 export default {
-  components: {},
-  data () {
+  components: { pagination, hotNews },
+  data() {
     return {
-      title: '分析报告',
+      title: "分析报告",
       isFinish: false,
       isLoading: false,
       pageIndex: 1,
-      pageSize: 10,
-    }
+      pageSize: 10
+    };
   },
   computed: {
-    lists () {
-      return this.list
+    lists() {
+      return this.list;
     },
+    pageTotal() {
+      return this.total;
+    }
   },
   methods: {
-    fetch () {
+    articleHref(item) {
+      return `/article/analysis/detail/${item.id}`;
+    },
+    fetch() {
       this.$http
         .get(
           `${location.origin}/pager?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}`
         )
-        .then((res) => {
-          console.log('res', res)
+        .then(res => {
+          console.log("res", res);
           if (res.data.list && res.data.list.length) {
-            this.total = res.data.total
-            this.list = this.list.concat(res.data.list)
+            this.total = res.data.total;
+            this.list = this.list.concat(res.data.list);
           } else {
-            this.isFinish = true
+            this.isFinish = true;
           }
-          this.isLoading = false
-        })
-    },
-    loadPage () {
-      if (!this.isFinish && !this.isLoading) {
-        this.isLoading = true
-        this.pageIndex++
-        setTimeout(() => {
-          this.fetch()
-        }, 1500)
-      }
-    },
+          this.isLoading = false;
+        });
+    }
   },
-  mounted () {
-    console.log("total============",this.total)
-  },
-}
+  mounted() {}
+};
 </script>

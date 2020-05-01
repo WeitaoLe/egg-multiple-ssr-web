@@ -9,7 +9,9 @@ export default function render(options) {
       options.router.push(context.state.url);
       const matchedComponents = options.router.getMatchedComponents();
       if (!matchedComponents) {
-        return Promise.reject({ code: '404' });
+        return Promise.reject({
+          code: '404'
+        });
       }
       return Promise.all(
         matchedComponents.map(component => {
@@ -26,7 +28,9 @@ export default function render(options) {
   }
   return context => {
     const VueApp = Vue.extend(options);
-    const app = new VueApp({ data: context.state });
+    const app = new VueApp({
+      data: context.state
+    });
     return new Promise(resolve => {
       resolve(app);
     });

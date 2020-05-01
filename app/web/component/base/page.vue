@@ -2,7 +2,7 @@
   <div class="page-wraper">
     <div class="page">
       <ul>
-        <li v-for="i in total" :key="i">
+        <li v-for="i in data" :key="i">
           <a :href="pageLink(i)">{{i}}</a>
         </li>
       </ul>
@@ -31,9 +31,15 @@
 </style>
 <script type="text/babel">
 export default {
-  name: "v-content",
+  name: "page",
   data() {
     return {};
+  },
+  props: {
+    data: {
+      type: Number,
+      default: 0
+    }
   },
   methods: {
     pageLink(i) {

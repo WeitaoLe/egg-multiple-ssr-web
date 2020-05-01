@@ -2,13 +2,13 @@
   <Layout :title="title">
     <div class="container smart-container">
       <div class="row row-offcanvas row-offcanvas-right">
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-md-9">
           <ul class="smart-artiles" id="articleList">
             <li v-for="item in lists" :key="item.id">
               <div class="point">+{{ item.hits }}</div>
               <div class="card">
                 <h2>
-                  <a :href="item.url" target="_blank">{{ item.maintitle }}</a>
+                  <a :href="articleHref(item)" target="_blank">{{ item.maintitle }}</a>
                 </h2>
                 <div>
                   <ul class="actions">
@@ -35,13 +35,10 @@
           <div id="pagerBottom" class="smart-pager" v-if="isLoading">
             <img src="../../../asset/images/loading.gif" />
           </div>
-          <div class="page">
-            <ul>
-              <li v-for="i in total" :key="i">
-                <a :href="pageLink(i)">{{i}}</a>
-              </li>
-            </ul>
-          </div>
+          <pagination :data="pageTotal"></pagination>
+        </div>
+        <div class="col-md-3">
+          <hotNews :datas="lists"></hotNews>
         </div>
       </div>
     </div>
@@ -69,8 +66,10 @@
 </style>
 <script type="text/babel">
 import { formatDate } from "framework/utils/utils.js";
+import pagination from "component/base/page";
+import hotNews from "component/layout/standard/hotNews/hotNews";
 export default {
-  components: {},
+  components: { pagination, hotNews },
   data() {
     return {
       title: "产品动态",
@@ -83,37 +82,18 @@ export default {
   computed: {
     lists() {
       return this.list;
-    }
-  },
-  methods: {
-    fetch() {
-      this.$http
-        .get(
-          `${location.origin}/pager?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}`
-        )
-        .then(res => {
-          console.log("res", res);
-          if (res.data.list && res.data.list.length) {
-            this.total = res.data.total;
-            this.list = this.list.concat(res.data.list);
-          } else {
-            this.isFinish = true;
-          }
-          this.isLoading = false;
-        });
     },
-    loadPage() {
-      if (!this.isFinish && !this.isLoading) {
-        this.isLoading = true;
-        this.pageIndex++;
-        setTimeout(() => {
-          this.fetch();
-        }, 1500);
-      }
+    pageTotal() {
+      return this.total;
     }
   },
   mounted() {
-    console.log("total============", this.total);
+    console.log(this.total);
+  },
+  methods: {
+    articleHref(item) {
+      return `/article/detail/${item.id}`;
+    }
   }
 };
 </script>

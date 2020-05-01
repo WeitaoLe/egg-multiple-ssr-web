@@ -1,6 +1,6 @@
-
 import MainLayout from './main';
 import '../../../asset/fonts/iconfont.css';
+
 
 const content = '<div><MainLayout><div slot="main"><slot></slot></div></MainLayout></div>';
 
@@ -21,7 +21,7 @@ const template = `<!DOCTYPE html>
 
 export default {
   name: 'Layout',
-  props: [ 'title', 'description', 'keywords' ],
+  props: ['title', 'description', 'keywords'],
   components: {
     MainLayout
   },

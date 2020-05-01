@@ -11,4 +11,7 @@ module.exports = app => {
   app.get('/article/analysys-dynamic', app.controller.article.analysysDynamic);
   app.get('/article/analysis-report', app.controller.article.analysis);
   app.get('/article/product-dynamic', app.controller.article.productDynamic)
+  app.get('/article/analysis/detail/:id', app.controller.article.detail)
+  app.get('/article/detail/:id', app.controller.article.detail)
+  app.get('/404', app.controller.error.error)
 };

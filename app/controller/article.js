@@ -34,6 +34,15 @@ module.exports = app => {
       await ctx.render('article/productdynamic/index.js', await Model.getPage(pageIndex, pageSize, columnId));
     }
 
+    async detail() {
+      const {
+        ctx
+      } = this;
+      let id = ctx.params.id
+      console.log('routeId============', id)
+      await ctx.render('article/detail.js', await Model.getDetail(id));
+    }
+
     // 接口请求
     async pager() {
       const {

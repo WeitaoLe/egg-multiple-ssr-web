@@ -2,12 +2,10 @@
   <Layout :title="title">
     <div class="home-container clearfix">
       <div class="banner-wraper">
-      <div class="banner container">
-        <h2>致力于数据能力平民化</h2>
-        <div class="banner-content">
-          以海量数字用户资产及算法模型为核心的大数据产品、平台及解决方案，帮助企业管理数字资产及精细化运营
+        <div class="banner container">
+          <h2>致力于数据能力平民化</h2>
+          <div class="banner-content">以海量数字用户资产及算法模型为核心的大数据产品、平台及解决方案，帮助企业管理数字资产及精细化运营</div>
         </div>
-      </div>
       </div>
 
       <div class="product-warp">
@@ -18,21 +16,21 @@
   </Layout>
 </template>
 <style lang="scss">
- .home-container{
-   height: auto;
-   padding: 0px 0 100px;
+.home-container {
+  height: auto;
+  padding: 0px 0 100px;
 
-  .banner-wraper{
-    background-image: linear-gradient(90deg,#34b6f6,#6f5af8);
+  .banner-wraper {
+    background-image: linear-gradient(90deg, #34b6f6, #6f5af8);
     color: #fff;
     height: 300px;
-    .banner{
+    .banner {
       text-align: left;
       padding: 50px 0;
-      h2{
+      h2 {
         font-size: 30px;
       }
-      .banner-content{
+      .banner-content {
         line-height: 26px;
         width: 400px;
         padding-top: 40px;
@@ -41,65 +39,62 @@
     }
   }
 
-  .product-warp{
+  .product-warp {
     text-align: center;
     height: 300px;
     padding-top: 40px;
-    h2{
+    h2 {
       font-size: 26px;
       padding-bottom: 15px;
     }
   }
-
- }
+}
 </style>
 <script type="text/babel">
-import { formatDate } from 'framework/utils/utils.js'
+import { formatDate } from "framework/utils/utils.js";
 export default {
   components: {},
-  data () {
+  data() {
     return {
-      title: '易观-数据驱动精益成长',
+      title: "易观-数据驱动精益成长",
       isFinish: false,
       isLoading: false,
       pageIndex: 1,
-      pageSize: 10,
-    }
+      pageSize: 10
+    };
   },
   computed: {
-    lists () {
-      return this.list
-    },
+    lists() {
+      return this.list;
+    }
   },
   methods: {
-    fetch () {
+    fetch() {
       this.$http
         .get(
           `${location.origin}/pager?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}`
         )
-        .then((res) => {
-          console.log('res', res)
+        .then(res => {
+          console.log("res", res);
           if (res.data.list && res.data.list.length) {
-            this.total = res.data.total
-            this.list = this.list.concat(res.data.list)
+            this.total = res.data.total;
+            this.list = this.list.concat(res.data.list);
           } else {
-            this.isFinish = true
+            this.isFinish = true;
           }
-          this.isLoading = false
-        })
+          this.isLoading = false;
+        });
     },
-    loadPage () {
+    loadPage() {
       if (!this.isFinish && !this.isLoading) {
-        this.isLoading = true
-        this.pageIndex++
+        this.isLoading = true;
+        this.pageIndex++;
         setTimeout(() => {
-          this.fetch()
-        }, 1500)
+          this.fetch();
+        }, 1500);
       }
-    },
+    }
   },
-  mounted () {
-
-  },
-}
+  mounted() {}
+};
 </script>
