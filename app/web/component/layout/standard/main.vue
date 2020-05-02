@@ -6,7 +6,7 @@
         <slot name="main"></slot>
       </div>
     </LayoutContent>
-    <ScrollTop />
+    <!-- <ScrollTop /> -->
     <LayoutFooter></LayoutFooter>
   </div>
 </template>
@@ -17,14 +17,14 @@
 import LayoutHeader from "./header/header";
 import LayoutFooter from "./footer/footer";
 import LayoutContent from "./content/content";
-import ScrollTop from "component/base/ScrollTop";
+// import ScrollTop from "component/base/ScrollTop";
 
 export default {
   components: {
     LayoutHeader,
     LayoutFooter,
-    LayoutContent,
-    ScrollTop
+    LayoutContent
+    // ScrollTop
   }
 };
 </script>
