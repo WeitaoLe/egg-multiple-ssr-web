@@ -10,7 +10,7 @@ module.exports = app => {
       } = this;
       let pageIndex = ctx.request.query.page;
       let pageSize = ctx.request.query.pageSize;
-      await ctx.render('home/index.js', await Model.getPage(pageIndex, pageSize));
+      await ctx.render('home/index.js');
     }
 
   };

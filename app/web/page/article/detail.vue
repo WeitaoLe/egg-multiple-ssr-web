@@ -1,13 +1,18 @@
 <template>
-  <Layout :title="detailData.maintitle">
-    <div class="container">
-      <div class="detail-wraper col-md-9">
-        <h1>{{detailData.maintitle}}</h1>
-        <div>标签：{{detailData.field}} 时间：{{detailData.publishdate}}</div>
+  <Layout>
+    <div class="container detail-wraper">
+      <div class="detail-left col-md-9">
+        <div class="left-details-head">
+          <h1>{{detailData.maintitle}}</h1>
+          <div class="head-other">标签：{{detailData.field}} 时间：{{detailData.publishdate}}</div>
+        </div>
+
         <div class="summary">{{detailData.summary}}</div>
+
         <div class="imgages" v-if="!detailData.content && detailData.columnid === 8">
           <img v-for="img in detailData.images" :key="img.id" v-lazy="imgDir(img)" alt srcset />
         </div>
+
         <div class="content" v-else v-html="detailData.content"></div>
       </div>
       <div class="col-md-3">
@@ -17,24 +22,57 @@
   </Layout>
 </template>
 <style lang="scss">
-.imgages {
-  img {
-    width: 100% !important;
+.detail-wraper {
+  margin: 20px auto 0;
+  .left-details-head {
+    background: #fff;
+    padding: 30px 30px 16px;
+    h1 {
+      color: #333333;
+      font-size: 24px;
+      font-weight: normal;
+      display: inline-block;
+    }
+    .head-other {
+      padding-top: 8px;
+      font-size: 14px;
+      color: #bbbbbb;
+    }
+  }
+  .summary {
+    padding: 28px 30px;
+    line-height: 30px;
+    color: #666666;
+    background: #f8f8f8;
+    font-size: 16px;
+  }
+  .imgages {
+    img {
+      width: 100% !important;
+    }
+  }
+  .content {
+    background: #fff;
+    line-height: 32px !important;
+    font-size: 16px;
+    color: #666;
+    padding: 10px 20px;
   }
 }
 </style>
 <script type="text/babel">
-import { formatDate } from "framework/utils/utils.js";
+import { formatDate, baseConfig } from "framework/utils/utils.js";
 export default {
   name: "detail",
   data() {
-    return {
-      title: "文章内页"
-    };
+    return {};
   },
   computed: {
     detailData() {
       return this.article;
+    },
+    title() {
+      return this.detailData.maintitle + baseConfig.baseSuffix;
     }
   },
   methods: {
@@ -43,8 +81,6 @@ export default {
     }
   },
   components: {},
-  mounted() {
-    console.log("vue===========", this);
-  }
+  mounted() {}
 };
 </script>

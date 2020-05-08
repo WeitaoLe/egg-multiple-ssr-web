@@ -67,7 +67,7 @@
 <script type="text/babel">
 import { formatDate } from "framework/utils/utils.js";
 import pagination from "component/base/page";
-import hotNews from "component/layout/standard/hotNews/hotNews";
+import hotNews from "component/layout/standard/right/hotNews";
 export default {
   components: { pagination, hotNews },
   data() {

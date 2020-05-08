@@ -51,7 +51,7 @@
 }
 </style>
 <script type="text/babel">
-import { formatDate } from "framework/utils/utils.js";
+import { formatDate, baseConfig } from "framework/utils/utils.js";
 export default {
   components: {},
   data() {

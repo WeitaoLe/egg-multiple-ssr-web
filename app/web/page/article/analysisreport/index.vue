@@ -1,33 +1,32 @@
 <template>
   <Layout :title="title">
-    <div class="container smart-container">
-      <div class="row row-offcanvas row-offcanvas-right">
+    <div class="container article-wraper">
+      <div class="row">
         <div class="col-xs-12 col-md-9">
-          <ul class="smart-artiles" id="articleList">
-            <li v-for="item in lists" :key="item.id">
-              <div class="point">+{{ item.hits }}</div>
-              <div class="card">
-                <h2>
-                  <a :href="articleHref(item)" target="_blank">{{ item.maintitle }}</a>
-                </h2>
-                <div>
-                  <ul class="actions">
-                    <li>
-                      <time class="timeago">{{ item.moduleName }}</time>
-                    </li>
-                    <li class="tauthor">
-                      <a href="#" target="_blank" class="get" v-html="item.author"></a>
-                    </li>
-                    <li>
-                      <a>+收藏</a>
-                    </li>
-                    <li>
-                      <span class="timeago">{{ item.summary }}</span>
-                    </li>
-                    <li>
-                      <span class="timeago"></span>
-                    </li>
-                  </ul>
+          <ul id="articleList">
+            <li v-for="item in lists" :key="item.id" class="article-item clearfix">
+              <div class="row">
+                <div class="article-img">
+                  <img v-if="item.articeimage" :src="formatImgDir(item)" alt />
+                  <div v-else class="imgback">
+                    <p>{{ item.maintitle }}</p>
+                  </div>
+                </div>
+                <div class="article-content">
+                  <h2>
+                    <a :href="formatArticleHref(item)" target="_blank">{{ item.maintitle }}</a>
+                  </h2>
+                  <div>
+                    <div class="article-summary">{{ item.summary }}</div>
+                    <div>
+                      <span>
+                        <time class="timeago">{{ item.publishdate }}</time>
+                      </span>
+                      <span class="tauthor">
+                        <a href="#" target="_blank" class="get" v-html="item.author"></a>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </li>
@@ -45,34 +44,77 @@
   </Layout>
 </template>
 <style lang="scss">
-.page {
-  li {
-    float: left;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    margin-right: 10px;
-    border: 1px solid #333;
-    a {
-      font-size: 16px;
-      color: blue;
-      display: inline-block;
-      width: 30px;
-      height: 30px;
+.article-wraper {
+  margin-top: 20px;
+  .article-item {
+    width: 100%;
+    padding: 0px 0 20px;
+    &:hover {
+      .article-content {
+        h2 {
+          a {
+            color: #0097e0;
+          }
+        }
+      }
+    }
+    .article-img {
+      overflow: hidden;
+      position: relative;
+      float: left;
+      width: 280px;
+      height: 190px;
+      &:hover {
+        img,
+        .imgback {
+          transform: scale(1.1);
+        }
+      }
+      img {
+        width: 280px;
+        height: 190px;
+        transition: all 0.8s ease-in-out;
+      }
+      .imgback {
+        width: 280px;
+        height: 190px;
+        background: url("../../../asset/images/news-default-bg.jpg") no-repeat;
+        background-size: cover;
+        color: #fff;
+        font-size: 12px;
+        padding-top: 20px;
+        transition: all 0.8s ease-in-out;
+      }
+    }
+    .article-content {
+      width: 100%;
+      padding-left: 300px;
+      h2 {
+        a {
+          font-size: 18px;
+          margin: 10px 0 20px 0;
+          color: #222222;
+          font-weight: 400;
+        }
+      }
+      .article-summary {
+        font-size: 14px;
+        color: #666;
+        line-height: 32px;
+        margin: 20px 0 25px;
+      }
     }
   }
 }
 </style>
 <script type="text/babel">
-import { formatDate } from "framework/utils/utils.js";
+import { formatDate, baseConfig } from "framework/utils/utils.js";
 import pagination from "component/base/page";
-import hotNews from "component/layout/standard/hotNews/hotNews";
+import hotNews from "component/layout/standard/right/hotNews";
 export default {
   components: { pagination, hotNews },
   data() {
     return {
-      title: "分析报告",
       isFinish: false,
       isLoading: false,
       pageIndex: 1,
@@ -85,27 +127,17 @@ export default {
     },
     pageTotal() {
       return this.total;
+    },
+    title() {
+      return "分析报告" + baseConfig.baseSuffix;
     }
   },
   methods: {
-    articleHref(item) {
-      return `/article/analysis/detail/${item.id}`;
+    formatImgDir(item) {
+      return `https://www.analysys.cn${item.articeimage}`;
     },
-    fetch() {
-      this.$http
-        .get(
-          `${location.origin}/pager?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}`
-        )
-        .then(res => {
-          console.log("res", res);
-          if (res.data.list && res.data.list.length) {
-            this.total = res.data.total;
-            this.list = this.list.concat(res.data.list);
-          } else {
-            this.isFinish = true;
-          }
-          this.isLoading = false;
-        });
+    formatArticleHref(item) {
+      return `/article/analysis/detail/${item.id}`;
     }
   },
   mounted() {}

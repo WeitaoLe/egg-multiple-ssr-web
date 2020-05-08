@@ -10,3 +10,7 @@ export function formatDate(input) {
 export function getUrlParameter(url) {
   return url;
 }
+
+export const baseConfig = {
+  baseSuffix: '-易观'
+}

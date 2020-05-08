@@ -7,9 +7,9 @@ const content = '<div><MainLayout><div slot="main"><slot></slot></div></MainLayo
 const template = `<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>{{title}}</title>
-  <meta name="keywords" :content="keywords">
-  <meta name="description" :content="description">
+  <title>{{vTitle}}</title>
+  <meta name="keywords" :content="vKeywords">
+  <meta name="description" :content="vDescription">
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
