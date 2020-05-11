@@ -123,7 +123,7 @@ export default {
   },
   computed: {
     lists() {
-      return this.list;
+      return JSON.parse(unescape(this.list));
     },
     pageTotal() {
       return this.total;

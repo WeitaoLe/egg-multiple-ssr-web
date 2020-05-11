@@ -16,13 +16,16 @@ async function getArticle(pageIndex, pageSize, columnId) {
     rscolumns: config.LIST_COLUMNS,
     column: columnId
   }
+
   const rep = await io.get(`${config.API_DIR}/api/newsArticleList/`, {
     params: params
   })
 
   list = rep.data.datas.records
+  let base64list = escape(JSON.stringify(list))
+
   return {
-    list: list,
+    list: base64list,
     total: list.length
   }
 }
@@ -36,14 +39,16 @@ async function detailDatas(id) {
   let params = {
     id: id
   }
-  console.log('params==============', params)
+
   const rep = await io.get(`${config.API_DIR}/api/news/detail`, {
     params: params
   })
+
   data = rep.data.datas.article
-  console.log("文章内容========", data)
+  let base64data = escape(JSON.stringify(data))
+
   return {
-    article: data
+    article: base64data
   }
 }
 

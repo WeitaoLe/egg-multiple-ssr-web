@@ -39,7 +39,6 @@ module.exports = app => {
         ctx
       } = this;
       let id = ctx.params.id
-      console.log('routeId============', id)
       await ctx.render('article/detail.js', await Model.getDetail(id));
     }
 
